@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BitBloom</title>
+    <link href="{{ url_for('static', path='/css/global.css') }}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="sticky flex px-12 py-5">
+        <div class="grow">
+            <a class="text-white text-4xl font-bold" aria-current="page" href="{{ url_for('get_index') }}">BitBloom</a>
+        </div>
+        <nav class="invisible sm:visible">
+            <a class={% if request.path == '/api/v1/starknet/single' or request.path == '/api/v1/starknet/batch' %}'mr-2 text-amber-200 text-2xl'
+                        {% else %}'mr-2 text-white text-2xl'
+                    {% endif %} 
+                aria-current="page" 
+                href="{{ url_for('get_starknet_page', checking_type = "single") }}"
+            >
+                Starknet
+            </a>
+            <a class={% if request.path == '/api/v1/scroll/single' or request.path == '/api/v1/scroll/batch' %}'text-amber-200 text-2xl'
+                        {% else %}'text-white text-2xl'
+                    {% endif %} 
+                aria-current="page" 
+                href="{{ url_for('get_scroll_page', checking_type = "single") }}"
+            >
+                Scroll
+            </a>
+        </nav>
+    </header>
+    <main class="mb-auto text-center">
+        <div class="pt-24">
+            <nav class="py-2">
+                <div class="inline-block p-1 text-md bg-amber-200 rounded-lg sm:invisible">
+                    <a href="{{ url_for('get_starknet_page', checking_type = "single") }}">
+                        <button class={% if request.path == '/api/v1/starknet/single' or request.path == '/api/v1/starknet/batch' %}"min-w-[100px] transition px-5 py-3 bg-amber-300 rounded-lg"
+                                        {% else %}"min-w-[100px] transition px-5 py-3 rounded-lg"
+                                    {% endif %}
+                        >
+                            Starknet
+                        </button>
+                    </a>
+                    <a href="{{ url_for('get_scroll_page', checking_type = "single") }}">
+                        <button class={% if request.path == '/api/v1/scroll/single' or request.path == '/api/v1/scroll/batch' %}"min-w-[100px] transition px-5 py-3 bg-amber-300 rounded-lg"
+                                        {% else %}"min-w-[100px] transition px-5 py-3 rounded-lg"
+                                    {% endif %}
+                        >
+                            Scroll
+                        </button>
+                    </a>
+                </div>
+            </nav>
+              {% block content %}
+                <h1 class="mt-5 text-4xl text-amber-200 font-bold sm:mt-0" >ДОБРО ПОЖАЛОВАТЬ В BITBLOOM </h1>
+              {% endblock %}
+        </div>
+    </main>
+    <footer class="px-12 py-5 text-white text-center">
+        FOOTER
+    </footer>
+</body>
+
+</html>

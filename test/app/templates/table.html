@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mt-5 text-4xl text-white sm:mt-0">
+	<span class="text-amber-200">Your</span>
+	 Scroll Wallet Analytics
+</h1>
+<div class="p-5 sm:flex items-center justify-center py-3 gap-3 mb-5">
+	<h5 class="text-2xl text-white fs-4 text-center">
+		Last update 
+		<span class="text-amber-200">24.03.2024, 15:48:16</span>
+	</h5>
+	<button class="mt-2 px-6 py-4 bg-amber-200 rounded-lg sm:px-3 py-2 mt-0 hover:brightness-50" type="submit" onclick="update()">
+		Update now
+	</button>
+</div>
+<div class="flex justify-center">
+	<div class="text-white overflow-x-scroll">
+		<a href="#" onclick="copyTextToClipboard()">
+			<div class="px-5 py-3 max-w-[100px] text-lg text-center bg-neutral-500 rounded-t-lg sm:p-1 sm:text-md hover:brightness-75" 
+			>
+				Copy
+			</div>
+		</a>
+		<table class="text-md">
+			<thead class="bg-neutral-500">
+				<tr>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>№</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<div class="flex justify-center items-center gap-2">
+							Wallet
+							<img src="/static/svg/expand.svg" class="max-h-[20px] min-h-auto max-w-[20px] min-w-auto" onclick="expand()">
+						</div>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>Balance $</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>Volume $</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>Fee $</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>Txs</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3 min-w-[100px]">
+						<p>M-W-D</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>Contracts</p>
+					</th>
+					<th rowspan="2" scope="col" class="align-top px-2 py-3">
+						<p>Last tx</p>
+					</th>
+					<th colspan="17" scope="col" class="px-5 py-3" style="padding:3px 3px 0px 3px;">
+						<p>Protocols</p>
+					</th>
+				</tr>
+				<tr>
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://ambient.finance/" title="Ambient" target="blank">
+							<img src="/static/image/protocols/ambient.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Ambient">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://syncswap.xyz/" title="Syncswap" target="blank">
+							<img src="/static/image/protocols/syncswap.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Syncswap">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://zebra.xyz/" title="Zebra" target="blank">
+							<img src="/static/image/protocols/zebra.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Zebra">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://skydrome.finance/" title="Skydrome" target="blank">
+							<img src="/static/image/protocols/skydrome.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Skydrome">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://dodoex.io/" title="Dodo" target="blank">
+							<img src="/static/image/protocols/dodo.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Dodo">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://spacefi.io/" title="Spacefi" target="blank">
+							<img src="/static/image/protocols/spacefi.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Spacefi">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://scrollswap.app/#/swap" title="ScrollSwap" target="blank">
+							<img src="/static/image/protocols/scrollswap.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="ScrollSwap">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://izumi.finance/trade/swap" title="Izumi" target="blank">
+							<img src="/static/image/protocols/izumi.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Izumi">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://layerbank.finance/" title="Layerbank" target="blank">
+							<img src="/static/image/protocols/layerbank.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Layerbank">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://punkswap.exchange/" title="PunkSwap" target="blank">
+							<img src="/static/image/protocols/punkswap.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="PunkSwap">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://openocean.finance/" title="OpenOcean" target="blank">
+							<img src="/static/image/protocols/openocean.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="OpenOcean">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://metavault.trade/apps/swap" title="MetaVault" target="blank">
+							<img src="/static/image/protocols/metavault.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="MetaVault">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://scroll.io/bridge" title="ScrollBridge" target="blank">
+							<img src="/static/image/protocols/scrollswapbridge.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="ScrollBridge">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://www.orbiter.finance/" title="Orbiter" target="blank">
+							<img src="/static/image/protocols/orbiter.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="Orbiter">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://scroll.name/" title="SNS" target="blank">
+							<img src="/static/image/protocols/sns.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="SNS">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://zkstars.io/?ref=0xEd8b6576AC0d3EAb09f2C2fed3f4A5D4c7b6D868" title="zkstars" target="blank">
+							<img src="/static/image/protocols/starkstars.png" class="min-h-[30px] h-[30px] max-w-[100px] rounded-full" alt="zkstars">
+						</a>
+					</th>
+	
+					<th class="text-blue-400 hover:brightness-75" style="padding:3px 3px 5px 3px;">
+						<a href="https://mail.dmail.ai/inbox" title="Dmail" target="blank">
+							<img src="/static/image/protocols/dmail.png" class="min-h-[30px] h-[30px] max-w-[75px] rounded-full" alt="Dmail">
+						</a>
+					</th>
+	
+				</tr>
+			</thead>
+			<tbody class="bg-neutral-700">
+					<tr>
+						<td>1</td>
+						<td class="wallet" style="text-align: left; padding: 0 0 0 7px">sdfada...dfadaf</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td> /  / </td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td class="wallet" style="text-align: left; padding: 0 0 0 7px">sdfada...dfadaf</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td> /  / </td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+			</tbody>
+		</table>
+		<textarea class="hidden" id="copy_table" value="№	Wallet			Balance$	Volume$	Fee$	Txs	M-W-D	Contracts	Last tx	Ambient	Syncswap	Zebra	Skydrome	Dodo	Spacefi	ScrollSwap	Izumi	Layerbank	PunkSwap	OpenOcean	MetaVault	ScrollBridge	Orbiter	SNS	zkstars	Dmail
+1	sdfadaf			0.0	0.0	0.0	0	0 / 0 / 0	0	None
+"></textarea>
+	</div>
+</div>
+<script>
+function copyTextToClipboard() {
+	text = document.getElementById("copy_table").getAttribute("value")
+	const temporaryTextarea = document.createElement("textarea");
+	temporaryTextarea.value = text;
+	document.body.appendChild(temporaryTextarea);
+	temporaryTextarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(temporaryTextarea);
+}
+</script>
+<script src="/static/js/datetime.js"></script>
+{% endblock %}

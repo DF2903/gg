@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="text-white">
+        <h2 style="margin-top: 10%;" class="text-2xl">
+            <ya-tr-span style="visibility: initial !important;">
+                Получайте аналитику для своих кошельков <span class="text-amber-200">Starknet</span>
+            </ya-tr-span>
+        </h2>
+        <form class="mt-10" method="POST" action="/process_wallets/starknet/{{checking_type}}">
+            <label class="block text-xl" for="input__wallet">
+                <ya-tr-span data-index="1-0" 
+                    data-translated="true" 
+                    data-source-lang="en" 
+                    data-target-lang="ru" 
+                    data-value={% if checking_type == "batch" %}"Your Wallet Addresses. "{% else %}"Your Wallet Address"{% endif %} 
+                    data-translation={% if checking_type == "batch" %}"Адреса ваших кошельков. "{% else %}"Адрес вашего кошелька"{% endif %} 
+                    data-ch="0" 
+                    data-type="trSpan"
+                    style="visibility: initial !important;"
+                >
+                    {% if checking_type == "batch" %}
+                        Адреса ваших кошельков.
+                        {% else %} Адрес вашего кошелька.
+                    {% endif %}  
+                </ya-tr-span>
+                {% if checking_type == "batch" %}
+                    <ya-tr-span data-index="1-1" 
+                        data-translated="true" 
+                        data-source-lang="en" 
+                        data-target-lang="ru" 
+                        data-value="Limit 120" 
+                        data-translation="Ограничение 120" 
+                        data-ch="0" 
+                        data-type="trSpan"
+                        class="text-amber-200" 
+                        style="visibility: initial !important;"
+                    >
+                        Ограничение 120
+                    </ya-tr-span>
+                {% endif %}
+            </label>
+            <div class="sm:flex items-center justify-center gap-5 mt-5">
+                {% if checking_type == "batch" %}
+                    <textarea class="outline-none resize-none h-[8rem] w-[20rem] mt-5 p-2 bg-transparent rounded-lg border-2 border-gray-500 focus:border-amber-100 sm:w-[26rem]" name="textarea_wallets" placeholder="Введите свой кошелек..."></textarea>
+                    {% else %}
+                        <input class="outline-none w-[20rem] p-2 bg-transparent rounded-lg border-2 border-gray-500 focus:border-amber-100 sm:w-[26rem]" placeholder="Введите свой кошелек...">
+                {% endif %}
+                <button class="mt-5 p-2 text-neutral-600 bg-amber-200 rounded-lg hover:brightness-50 sm:mt-0" type="submit">
+                    <ya-tr-span data-index="2-0" 
+                        data-translated="true" 
+                        data-source-lang="en" 
+                        data-target-lang="ru" 
+                        data-value="Get Data" 
+                        data-translation="Получение данных" 
+                        data-ch="0" 
+                        data-type="trSpan" 
+                        style="visibility: initial !important;"
+                    >
+                        Получение данных
+                    </ya-tr-span>
+                </button>
+            </div>
+        </form>
+        <div class="mt-7">
+            <div class="inline-block text-xl rounded-lg border-2 border-amber-100">
+                <a href="{{ url_for('get_starknet_page', checking_type = "single") }}">
+                    <button class={% if request.path == '/api/v1/starknet/single' %}"min-w-[157px] transition px-10 py-3 bg-amber-200/30 rounded-lg border-r-2 border-amber-100"
+                                    {% else %}"min-w-[157px] transition px-10 py-3 rounded-lg hover:bg-amber-200/30"
+                                {% endif %}
+                    >
+                        Single
+                    </button>
+                </a>
+                <a href="{{ url_for('get_starknet_page', checking_type = "batch") }}">
+                    <button class={% if request.path == '/api/v1/starknet/batch' %}"min-w-[157px] transition ml-3 px-10 py-3 bg-amber-200/30 border-l-2 border-amber-100 rounded-lg"
+                                    {% else %}"min-w-[157px] transition ml-3 px-10 py-3 rounded-lg hover:bg-amber-200/30"
+                                {% endif %}
+                    >
+                        Batch
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
